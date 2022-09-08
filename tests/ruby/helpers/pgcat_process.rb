@@ -74,6 +74,14 @@ class PgcatProcess
     raise StandardError, "Process #{@pid} never became ready. Logs #{logs}"
   end
 
+  def terminate
+    `kill -s TERM #{@pid}`
+  end
+
+  def interrupt
+    `kill -s INT #{@pid}`
+  end
+
   def stop
     `kill #{@pid}`
     sleep 0.1

@@ -211,9 +211,11 @@ async fn main() {
                 let _ = shutdown_tx.send(());
                 let exit_tx = exit_tx.clone();
                 let _ = drain_tx.send(0).await;
+                let config = get_config();
 
                 tokio::task::spawn(async move {
                     let mut interval = tokio::time::interval(tokio::time::Duration::from_millis(config.general.shutdown_timeout));
+                    info!("Waiting {}ms before forcibly closing client connections", config.general.shutdown_timeout);
 
                     // First tick fires immediately.
                     interval.tick().await;

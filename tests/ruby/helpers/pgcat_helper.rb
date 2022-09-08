@@ -13,7 +13,7 @@ module Helpers
         "username" => "sharding_user"
       }
 
-      pgcat    = PgcatProcess.new("info")
+      pgcat    = PgcatProcess.new("trace")
       primary0 = PgInstance.new(5432, user["username"], user["password"], "shard0")
       primary1 = PgInstance.new(7432, user["username"], user["password"], "shard1")
       primary2 = PgInstance.new(8432, user["username"], user["password"], "shard2")
@@ -54,7 +54,7 @@ module Helpers
         "username" => "sharding_user"
       }
 
-      pgcat = PgcatProcess.new("info")
+      pgcat = PgcatProcess.new("trace")
       pgcat_cfg = pgcat.current_config
 
       primary  = PgInstance.new(5432, user["username"], user["password"], "shard0")
